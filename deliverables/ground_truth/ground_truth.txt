@@ -1,0 +1,154 @@
+
+===== CRM shape=(499, 20)
+account_id                str
+company_name              str
+industry                  str
+company_size_tier         str
+annual_revenue_usd    float64
+employee_count          int64
+headquarters              str
+opportunity_id            str
+sales_rep                 str
+sales_manager             str
+sales_region              str
+product_name              str
+product_category          str
+list_price              int64
+deal_stage                str
+deal_created_date         str
+deal_closed_date          str
+deal_value            float64
+loss_reason               str
+data_source               str
+nulls: {'loss_reason': 315}
+
+===== MKT shape=(2240, 20)
+account_id                        str
+lead_id                           str
+campaign_name                     str
+campaign_channel                  str
+campaign_date                     str
+funnel_stage                      str
+customer_segment                  str
+annual_income                 float64
+household_size                  int64
+days_since_last_engagement      int64
+product_spend_tier1             int64
+product_spend_tier2             int64
+product_spend_tier3             int64
+campaign_spend                float64
+revenue_attributed            float64
+web_visits_per_month            int64
+campaign_response               int64
+Mkt_Src_Cd                        str
+complaint_flag                  int64
+data_source                       str
+nulls: {'annual_income': 24}
+
+===== SUP shape=(3000, 20)
+account_id                  str
+ticket_id                   str
+ticket_created_date         str
+ticket_resolved_date        str
+priority                    str
+product_area                str
+contact_channel             str
+reported_by                 str
+customer_tier               str
+company_size                str
+region                      str
+users_affected            int64
+error_rate_pct          float64
+downtime_minutes          int64
+payment_impact            int64
+security_incident         int64
+data_loss                 int64
+customer_sentiment          str
+tickets_last_30_days      int64
+data_source                 str
+nulls: {'ticket_resolved_date': 59, 'customer_sentiment': 59}
+
+-- CRM --
+unique accounts: 85 unique opportunities: 496
+deal_stage counts: {'Won': 315, 'Lost': 184}
+date range created: 2023-06-17 2025-01-25
+date range closed: 2023-12-03 2025-01-31
+total won revenue: 707201.0
+avg won deal value: 2245.08
+win rate: 63.13 %
+loss reasons: {nan: 315, 'No Decision Made': 43, 'Poor Product Fit': 43, 'Competitor Won': 34, 'Timing Not Right': 33, 'Budget Constraints': 31}
+revenue by region: {'Central': 274285.0, 'East': 184673.0, 'West': 248243.0}
+win rate by region: {'Central': 69.9, 'East': 57.81, 'West': 58.79}
+avg days to close (won): 71.9
+avg days to close (lost): 57.9
+avg days to close (all): 66.8
+revenue by product_category: {'NovaEdge': 158641.0, 'NovaPulse': 548560.0}
+revenue by company_size_tier: {'Enterprise': 319423.0, 'Large': 271613.0, 'Medium': 58192.0, 'Small': 57973.0}
+won deals value by segment via mkt? skip
+
+-- MKT --
+unique accounts: 100 leads: 2240
+campaign_date range: 2023-01-01 2025-01-31
+response rate: 27.19 % responded: 609
+funnel_stage counts: {'Qualified Lead': 848, 'Lead': 465, 'Closed Won': 412, 'Prospect': 404, 'Opportunity': 111}
+orphan accounts: 150
+total campaign spend: 12359497.34
+total revenue attributed: 1127223.09
+ROI by channel: {'Direct Mail': -70.7, 'Email': -94.9, 'Organic Search': -97.8, 'Paid Social': -92.3, 'Partner Referral': -90.7}
+spend/rev/roi by campaign:
+                           spend        rev  leads  resp_pct  roi_pct
+campaign_name                                                        
+Digital Retarget      2423781.95  196249.17    419      34.8    -91.9
+Enterprise Expansion  2114968.95  194356.76    389      27.8    -90.8
+NovaEdge Awareness    1518785.09   34279.64    273       6.2    -97.7
+NovaPulse Launch      2423202.47  394156.59    409      35.2    -83.7
+Q3 Growth Sprint      1984711.38  133415.20    410      32.9    -93.3
+Year-End Accelerator  1894047.50  174765.73    340      17.4    -90.8
+response rate by channel: {'Direct Mail': 53.0, 'Email': 8.7, 'Organic Search': 14.5, 'Paid Social': 40.3, 'Partner Referral': 34.3}
+leads by channel: {'Partner Referral': 807, 'Organic Search': 671, 'Paid Social': 325, 'Email': 288, 'Direct Mail': 149}
+leads by segment: {'Professional': 1127, 'Enterprise': 486, 'Growth': 370, 'Standard': 203, 'Starter': 54}
+closed won leads: 412
+
+-- SUP --
+unique accounts: 100 tickets: 2996
+created range: 2023-06-01 2025-02-28
+priority counts: {'low': 1500, 'medium': 1050, 'high': 400, 'critical': 50}
+unresolved (null resolved): 59
+orphan rows: 131
+avg resolution days: 2.45
+avg resolution days by priority: {'critical': 2.36, 'high': 2.42, 'low': 2.48, 'medium': 2.42}
+product area counts: {'Notifications': 601, 'Analytics Dashboard': 597, 'Authentication': 582, 'Mobile App': 581, 'Billing': 329, 'Data Pipeline': 310}
+avg resolution by product area: {'Analytics Dashboard': 2.45, 'Authentication': 2.4, 'Billing': 2.45, 'Data Pipeline': 2.49, 'Mobile App': 2.48, 'Notifications': 2.43}
+sentiment: {'neutral': 1953, 'negative': 684, 'positive': 304}
+region counts: {'EMEA': 1071, 'APAC': 1003, 'AMER': 926}
+customer_tier counts: {'Plus': 1280, 'Basic': 963, 'Enterprise': 757}
+total downtime: 47255
+security incidents: 14 data loss: 11 payment impact: 41
+top 10 accounts by tickets: {'ACCT-041': 334, 'ACCT-035': 180, 'ACCT-076': 176, 'ACCT-043': 171, 'ACCT-060': 142, 'ACCT-036': 140, 'ACCT-020': 109, 'ACCT-072': 90, 'ACCT-025': 89, 'ACCT-018': 83}
+
+-- CROSS --
+crm accts: 85 mkt accts in crm: 85 sup accts in crm: 85
+top accounts won-value x tickets:               value  tickets
+account_id                  
+ACCT-041    40722.0      334
+ACCT-045    27933.0       30
+ACCT-011    20912.0       37
+ACCT-062    17362.0       49
+ACCT-005    17205.0        1
+ACCT-027    16866.0        6
+ACCT-035    16747.0      180
+ACCT-076    16275.0      176
+risk candidates (high value + neg tickets):               value  tickets   neg
+account_id                        
+ACCT-041    40722.0      334  63.0
+ACCT-045    27933.0       30   6.0
+ACCT-011    20912.0       37  15.0
+ACCT-062    17362.0       49  13.0
+ACCT-027    16866.0        6   1.0
+ACCT-035    16747.0      180  46.0
+ACCT-076    16275.0      176  38.0
+ACCT-060    15780.0      142  35.0
+avg won deal value for accts with >3 tickets_last_30: 2241.88
+win rate for Partner Referral sourced accounts: 64.78 % deals: 372
+est. 2-way join fanout rows (deals x mkt): 13738
+est unified full join rows: 63420
