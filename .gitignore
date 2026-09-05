@@ -5,3 +5,5 @@ chrome.log
 *.log
 novatech_revenue_intelligence_submission.zip
 deliverables/pdf/dashboard_export.pdf
+# keep merged dashboard pdf
+!deliverables/pdf/dashboard_export.pdf
