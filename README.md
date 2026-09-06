@@ -24,6 +24,7 @@ The central design problem here is **grain**: account-level left joins fan out r
 3. [`deliverables/exec_summary.md`](deliverables/exec_summary.md) — the dashboard's generative executive summary
 4. [`pdf/dashboard_export.pdf`](deliverables/pdf/dashboard_export.pdf) — all three sheets exported
 5. [`docs/`](docs) — methodology, screenshot evidence guide, first-person retrospective
+6. [`WALKTHROUGH.md`](WALKTHROUGH.md) — step-by-step reproduction: every input and its provenance, build order, failure log
 
 ## What was built
 
@@ -52,6 +53,7 @@ docs/
   methodology.md            grain/fan-out design reasoning
   evidence_guide.md         screenshot tour
   retrospective.md          decisions, mistakes, lessons
+WALKTHROUGH.md              full reproduction guide (inputs, provenance, order, failures)
 ```
 
 The submission zip delivered to Udacity is byte-equivalent to `deliverables/` (kept out of git to hold repo size down).
