@@ -1,4 +1,4 @@
-# Walkthrough — exactly what we did, with every input and where it came from
+# Walkthrough - exactly what we did, with every input and where it came from
 
 This document lets a stranger reproduce the project from scratch. Section order is the real work order, including the parts that failed.
 
@@ -17,10 +17,10 @@ This document lets a stranger reproduce the project from scratch. Section order 
 
 > The starter CSVs are course materials, so they are **not** redistributed in this repo. Everything computed from them is reproducible via `deliverables/ground_truth/profile_data.py` (`NOVA_DATA_DIR=/path/to/Structured Data python ...`) and matches `deliverables/ground_truth/ground_truth.txt`.
 
-## 1. Baseline verification — before touching the lab (screenshots `00–54`)
+## 1. Baseline verification - before touching the lab (screenshots `00–54`)
 
 1. Ran `profile_data.py` on the raw CSVs → recorded: 315/499 won, **$707,201**, 63.1% win, 609/2,240 responses, all-campaign negative ROI, 59 null `customer_sentiment`, duplicate `opportunity_id`/`ticket_id`, orphan accounts ACCT-101–115, ACCT-041 = 334 tickets/$40,722.
-2. In Quick Chat, asked 7 pre-planned questions against the *pre-indexed* knowledge bases (2 per CSV KB + 1 out-of-scope document probe) and logged each against the data dictionary: **6 PASS, 1 expected FAIL** (scoped Q correctly refused the document probe — a hallucination guard, recorded as a pass).
+2. In Quick Chat, asked 7 pre-planned questions against the *pre-indexed* knowledge bases (2 per CSV KB + 1 out-of-scope document probe) and logged each against the data dictionary: **6 PASS, 1 expected FAIL** (scoped Q correctly refused the document probe - a hallucination guard, recorded as a pass).
 3. Every mismatch investigated at the row level before proceeding (the verification log's notes column records these).
 
 **Why first:** if the numbers can't be proven from raw data, nothing downstream can be trusted. This kit later caught a real Quick Chat inflation bug (step 4).
@@ -40,7 +40,7 @@ This document lets a stranger reproduce the project from scratch. Section order 
    - `campaign_roi_pct = (deal_value_attribution − spend) / spend * 100`
    - `resolution_days = ifelse(isNull(closed_date), NULL, dateDiff(...))` (null-tolerant)
    - `at_risk_flag = ifelse(sentiment="Negative", ifelse(priority="Critical", TRUE, FALSE), FALSE)`
-3. Predicted grain by hand **before running the join**: for each account, deals × leads × tickets, summed over accounts = **63,420 rows**. The joined output was 63,420 — exact match (`106_*`, `199_fanout_proof`).
+3. Predicted grain by hand **before running the join**: for each account, deals × leads × tickets, summed over accounts = **63,420 rows**. The joined output was 63,420 - exact match (`106_*`, `199_fanout_proof`).
 4. Consequence designed for: never bind sum/average KPIs to the joined model for single-source facts (see methodology).
 
 ## 4. One dashboard, three sheets (screenshots `200–449`)
@@ -59,8 +59,8 @@ Then: three quantified annotations, cross-sheet navigation action (click a prior
 
 1. Quick Suite → Q&A → new topic **`WA - NovaTech Revenue Intelligence`** over all 4 datasets (3 SPICE + unified).
 2. Added business glossary (win rate, ROI, at-risk, resolution time) so Q resolves jargon.
-3. Before/after evidence: asked "total revenue" against the raw pre-configured KBs (`qc_before*` — unscoped/wrong), then against the topic (`qc_after*`).
-4. Five-question exploration logged with expectations computed in pandas first — entry #2 is the famous one: Q averaged *correctly* over the fan-out table but its sums were inflated, which proved the grain rule in section 3 empirically. Full log: `deliverables/q_exploration_log.md`.
+3. Before/after evidence: asked "total revenue" against the raw pre-configured KBs (`qc_before*` - unscoped/wrong), then against the topic (`qc_after*`).
+4. Five-question exploration logged with expectations computed in pandas first - entry #2 is the famous one: Q averaged *correctly* over the fan-out table but its sums were inflated, which proved the grain rule in section 3 empirically. Full log: `deliverables/q_exploration_log.md`.
 
 ## 6. Stakeholder package + cleanup
 
@@ -77,4 +77,4 @@ Then: three quantified annotations, cross-sheet navigation action (click a prior
 
 ## Time & environment
 
-~2 working days across ~2 weeks wall-clock (lab sessions expire — Vocareum sessions end quickly, keep work in small saved increments). Chrome on Linux; all lab actions manual in the QuickSight UI (automation was only used for screenshotting evidence, never for grading-relevant state).
+~2 working days across ~2 weeks wall-clock (lab sessions expire - Vocareum sessions end quickly, keep work in small saved increments). Chrome on Linux; all lab actions manual in the QuickSight UI (automation was only used for screenshotting evidence, never for grading-relevant state).
