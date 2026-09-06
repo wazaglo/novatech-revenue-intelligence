@@ -25,10 +25,16 @@ In Quick Data Prep: **CRM ⟕ Marketing on `account_id`, then ⟕ Support on `ac
 
 **Key finding worth repeating:** Q answered "average deal size by company size" over the fan-out-joined table and got inflated-per-row averages, while the dashboard (correct source dataset) gives the true deduped numbers — see Q log entry #2 for why averages survive fan-out but sums don't, and how that drove the model design.
 
+## Docs (design reasoning, not just artifacts)
+- [`docs/methodology.md`](docs/methodology.md) — why the model, sheets, and KPI bindings are shaped this way (grain/fan-out rule, verification-first workflow, data-quality handling)
+- [`docs/evidence_guide.md`](docs/evidence_guide.md) — guided tour of the screenshot trail
+- [`docs/retrospective.md`](docs/retrospective.md) — first-person account of decisions, mistakes and lessons
+
 ## Layout
 ```
 deliverables/            submission package (logs, report, exec summary, PDFs, evidence screenshots, ground truth)
   README.md              rubric ↔ artifact map
+docs/                    methodology, evidence guide, retrospective
 novatech_revenue_intelligence_submission.zip
 ```
 
