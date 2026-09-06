@@ -1,7 +1,10 @@
+import os
 import pandas as pd
 from pathlib import Path
 
-base = Path("/home/wazaglo/udacity/project-starter-resources/Structured Data")
+# Point this at a folder containing the 3 starter CSVs (course materials,
+# not redistributed here):  NOVA_DATA_DIR=/path/to/Structured Data python profile_data.py
+base = Path(os.environ.get("NOVA_DATA_DIR", "Structured Data"))
 crm = pd.read_csv(base / "novatech_crm_deals.csv")
 mkt = pd.read_csv(base / "novatech_marketing_campaigns.csv")
 sup = pd.read_csv(base / "novatech_support_tickets.csv")

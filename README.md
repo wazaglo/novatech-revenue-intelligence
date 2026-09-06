@@ -59,3 +59,7 @@ The submission zip delivered to Udacity is byte-equivalent to `deliverables/` (k
 ## Honest limitations
 
 Single-quarter data (no trend lines possible); the unified model is deliberately denormalized for Q&A breadth at the cost of storage; `Other` category hygiene (e.g., company-tier labels) was surfaced to stakeholders rather than silently corrected. See [`docs/retrospective.md`](docs/retrospective.md).
+
+## Contributing & license
+
+Found an error in a number or a claim? Open an issue — see [`CONTRIBUTING.md`](CONTRIBUTING.md) for how to reproduce the checks. Content licensed CC BY-NC-ND 4.0 ([`LICENSE`](LICENSE)).
