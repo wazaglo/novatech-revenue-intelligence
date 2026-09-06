@@ -1,6 +1,6 @@
 # What I learned building this (first-person retrospective)
 
-This is my own account of the build — what worked, what bit me, and what I'd do
+This is my own account of the build - what worked, what bit me, and what I'd do
 differently. Kept deliberately honest; a BI project you can't defend line-by-line isn't
 finished.
 
@@ -8,7 +8,7 @@ finished.
 - **Baseline before building.** Reading the three Quick Chat knowledge bases and the data
   dictionary *first* meant I already knew the numbers should be ~499 deals / ~2,240
   campaigns / ~3,000 tickets. When the real CSVs came back slightly different, I didn't
-  trust either source blindly — I wrote a pandas ground-truth file and made every later
+  trust either source blindly - I wrote a pandas ground-truth file and made every later
   check agnostic to the exact row count. That single habit made the verification log write
   itself.
 - **Three-way cross-check.** Every KPI was confirmed by (a) the data dictionary / pandas,
@@ -17,7 +17,7 @@ finished.
   fan-out note below.
 - **Annotations as decisions, not decoration.** Each sheet has exactly one annotation that
   names a number *and* an action ("Won revenue is $707,201 from 315 won deals (63.1% win
-  rate) — prioritize Enterprise and Large pipeline coverage"). If a chart can't carry a number like that, it shouldn't be on the
+  rate) - prioritize Enterprise and Large pipeline coverage"). If a chart can't carry a number like that, it shouldn't be on the
   sheet.
 
 ## What bit me
@@ -42,10 +42,10 @@ finished.
 - Publish *one* multi-sheet dashboard from the start; my first instinct was three
   single-purpose dashboards, which the rubric explicitly does not want.
 - Keep a tiny scratch script to assert the model grain (63,420 = Σ deals×leads×tickets per
-  account) after every dataset refresh — I did it by hand and would automate it.
+  account) after every dataset refresh - I did it by hand and would automate it.
 
 ## The number I'd defend anywhere
 **$707,201** won revenue from **315 of 499** deals (**63.1%**). I can reproduce it from the
 raw CSV in one pandas line, see it on the dashboard KPI, and get the same answer from the
-governed Q&A Topic. That end-to-end agreement is the actual deliverable — the dashboard is
+governed Q&A Topic. That end-to-end agreement is the actual deliverable - the dashboard is
 just how other people get to it.

@@ -11,7 +11,7 @@ bases and the data dictionary, then recomputed every benchmark number offline wi
 with the course data dictionary (499 vs 500 deals, 2,240 vs 2,200 campaign rows, 3,000 vs
 2,995 tickets) did I commit to a ground-truth file as the single source of truth for the
 whole project. This caught a Quick Chat answer that confidently reported an average deal
-size computed over a fan-out-joined table — see Q log entry #2 and the fan-out section below.
+size computed over a fan-out-joined table - see Q log entry #2 and the fan-out section below.
 
 Consequences that shaped everything downstream:
 - Every benchmark in the verification log is **row-count agnostic** (`unique won deals /
@@ -41,13 +41,13 @@ Design rule derived from that number:
 - **Unsafe:** any SUM (inflated by fan-out). Sales/Marketing KPIs therefore read from the
   single-source datasets; the Customer Health sheet states the grain in-sheet.
 
-## 4. Calculated fields — chosen to test real semantics
+## 4. Calculated fields - chosen to test real semantics
 
-- `days_to_close = dateDiff(close_date, created_date, MM)` — pipeline velocity, null-safe.
+- `days_to_close = dateDiff(close_date, created_date, MM)` - pipeline velocity, null-safe.
 - `campaign_roi_pct = (attributed_revenue - campaign_spend) / campaign_spend * 100`
-  — every one of the 6 programs is negative (−83.7%…−97.7%): the headline finding.
+  - every one of the 6 programs is negative (−83.7%…−97.7%): the headline finding.
 - `resolution_days`, `resolved`, `tickets_last_30_days`, `customer_health_score`
-  (weights 0.5 recency / 0.3 volume / 0.2 sentiment) — documented in the glossary so Q
+  (weights 0.5 recency / 0.3 volume / 0.2 sentiment) - documented in the glossary so Q
   and humans agree on definitions.
 
 ## 5. One dashboard, three sheets (not three dashboards)
@@ -55,7 +55,7 @@ Design rule derived from that number:
 The rubric asks for a single 3-sheet dashboard (Marketing Funnel / Sales Pipeline /
 Customer Health). Sheets are ordered journey-first: risk → pipeline → spend. Interaction
 budget spent deliberately:
-- Filter controls on Customer Health (`priority`) and Sales Pipeline (`deal_stage`) —
+- Filter controls on Customer Health (`priority`) and Sales Pipeline (`deal_stage`) -
   satisfies "controls on ≥2 sheets" where they answer the two questions leadership asks
   ("which tickets now?", "which stage is at risk?").
 - One cross-sheet **Navigation action** on the priority chart → Marketing Funnel: the

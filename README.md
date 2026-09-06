@@ -1,6 +1,6 @@
-# NovaTech Revenue Intelligence — Amazon QuickSight BI Build
+# NovaTech Revenue Intelligence - Amazon QuickSight BI Build
 
-A complete business-intelligence project in Amazon QuickSight (Amazon Quick Suite): from raw starter CSVs to a governed, three-sheet executive dashboard with Q&A — where **every number in the dashboard was independently recomputed from the raw files before publication**.
+A complete business-intelligence project in Amazon QuickSight (Amazon Quick Suite): from raw starter CSVs to a governed, three-sheet executive dashboard with Q&A - where **every number in the dashboard was independently recomputed from the raw files before publication**.
 
 *Udacity nd2726 capstone · Vocareum lab, us-west-2 · September 2026 · Wisdom Azaglo*
 
@@ -15,27 +15,27 @@ A complete business-intelligence project in Amazon QuickSight (Amazon Quick Suit
 | Data-quality findings | dup keys, 59 null sentiment rows, 15 orphan accounts | documented, not silently fixed |
 | Churn-risk signal | ACCT-041: 334 tickets / $40,722 income | flagged for CS team |
 
-The central design problem here is **grain**: account-level left joins fan out rows, so the model stores them for Q&A breadth while every dashboard KPI binds to its source dataset — a lesson learned the hard way when Quick Chat averaged correctly but summed inflated (Q log #2).
+The central design problem here is **grain**: account-level left joins fan out rows, so the model stores them for Q&A breadth while every dashboard KPI binds to its source dataset - a lesson learned the hard way when Quick Chat averaged correctly but summed inflated (Q log #2).
 
 ## Start here
 
-1. [`deliverables/report_sarah_chen.md`](deliverables/report_sarah_chen.md) — the stakeholder report the project was actually for
-2. [`deliverables/verification_log.md`](deliverables/verification_log.md) — how every figure was proven (data dictionary ↔ Quick Chat ↔ pandas/dashboard)
-3. [`deliverables/exec_summary.md`](deliverables/exec_summary.md) — the dashboard's generative executive summary
-4. [`pdf/dashboard_export.pdf`](deliverables/pdf/dashboard_export.pdf) — all three sheets exported
-5. [`docs/`](docs) — methodology, screenshot evidence guide, first-person retrospective
-6. [`WALKTHROUGH.md`](WALKTHROUGH.md) — step-by-step reproduction: every input and its provenance, build order, failure log
+1. [`deliverables/report_sarah_chen.md`](deliverables/report_sarah_chen.md) - the stakeholder report the project was actually for
+2. [`deliverables/verification_log.md`](deliverables/verification_log.md) - how every figure was proven (data dictionary ↔ Quick Chat ↔ pandas/dashboard)
+3. [`deliverables/exec_summary.md`](deliverables/exec_summary.md) - the dashboard's generative executive summary
+4. [`pdf/dashboard_export.pdf`](deliverables/pdf/dashboard_export.pdf) - all three sheets exported
+5. [`docs/`](docs) - methodology, screenshot evidence guide, first-person retrospective
+6. [`WALKTHROUGH.md`](WALKTHROUGH.md) - step-by-step reproduction: every input and its provenance, build order, failure log
 
 ## What was built
 
-- **Datasets (SPICE, `WA -` prefixed)** — CRM (499), marketing (2,240), support (3,000) + **unified account-level model** (left joins CRM ⟕ Marketing ⟕ Support on `account_id`) with calculated fields `days_to_close`, `campaign_roi_pct`, `resolution_days`, `at_risk_flag`
-- **One published dashboard — `WA - NovaTech Revenue Intelligence Dashboard`** (`53e87aec-721e-491e-8436-e1b3d6eaba55`)
-  - *Sales Pipeline* — KPI $707,201, revenue by region/loss reason/tier, `deal_stage` filter control, quantified annotation
-  - *Marketing Funnel* — spend-vs-revenue per campaign, responses by channel, funnel stages, `campaign_channel` control
-  - *Customer Health* — resolution time by priority, sentiment donut, volume by company, priority control, grain disclosure
+- **Datasets (SPICE, `WA -` prefixed)** - CRM (499), marketing (2,240), support (3,000) + **unified account-level model** (left joins CRM ⟕ Marketing ⟕ Support on `account_id`) with calculated fields `days_to_close`, `campaign_roi_pct`, `resolution_days`, `at_risk_flag`
+- **One published dashboard - `WA - NovaTech Revenue Intelligence Dashboard`** (`53e87aec-721e-491e-8436-e1b3d6eaba55`)
+  - *Sales Pipeline* - KPI $707,201, revenue by region/loss reason/tier, `deal_stage` filter control, quantified annotation
+  - *Marketing Funnel* - spend-vs-revenue per campaign, responses by channel, funnel stages, `campaign_channel` control
+  - *Customer Health* - resolution time by priority, sentiment donut, volume by company, priority control, grain disclosure
   - Cross-sheet navigation, 3 quantified annotations, generative executive summary, Q&A enabled
-- **Governed Q&A topic** — `WA - NovaTech Revenue Intelligence` (V2 Active) over all four datasets with business glossary; before/after evidence and five-question exploration in [`deliverables/q_exploration_log.md`](deliverables/q_exploration_log.md)
-- **Ground-truth toolkit** — [`deliverables/ground_truth/profile_data.py`](deliverables/ground_truth/profile_data.py) reproduces every headline number from the raw CSVs
+- **Governed Q&A topic** - `WA - NovaTech Revenue Intelligence` (V2 Active) over all four datasets with business glossary; before/after evidence and five-question exploration in [`deliverables/q_exploration_log.md`](deliverables/q_exploration_log.md)
+- **Ground-truth toolkit** - [`deliverables/ground_truth/profile_data.py`](deliverables/ground_truth/profile_data.py) reproduces every headline number from the raw CSVs
 
 ## Evidence trail
 
@@ -64,4 +64,4 @@ Single-quarter data (no trend lines possible); the unified model is deliberately
 
 ## Contributing & license
 
-Found an error in a number or a claim? Open an issue — see [`CONTRIBUTING.md`](CONTRIBUTING.md) for how to reproduce the checks. Content licensed CC BY-NC-ND 4.0 ([`LICENSE`](LICENSE)).
+Found an error in a number or a claim? Open an issue - see [`CONTRIBUTING.md`](CONTRIBUTING.md) for how to reproduce the checks. Content licensed CC BY-NC-ND 4.0 ([`LICENSE`](LICENSE)).

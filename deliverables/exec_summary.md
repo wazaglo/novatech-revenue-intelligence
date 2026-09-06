@@ -8,7 +8,7 @@ Here's a comprehensive summary of the key findings from the NovaTech Revenue Int
 
 ## Sales Pipeline
 - Total Deal Value: $707,201 across all deals.
-- Win Rate: Out of 499 total opportunities, 315 were Won and 184 were Lost — a win rate of approximately 63%.
+- Win Rate: Out of 499 total opportunities, 315 were Won and 184 were Lost - a win rate of approximately 63%.
 - Regional Performance: Central $274,285 (38.8%), West $248,243 (35.1%), East $184,673 (26.1%). The Central region leads in deal value, followed closely by the West; the East trails by a notable margin.
 
 ## Marketing Funnel
@@ -20,4 +20,4 @@ Here's a comprehensive summary of the key findings from the NovaTech Revenue Int
 ## Customer Health
 - Ticket Volume: The dashboard tracks support tickets across 85+ companies, with significant variation in ticket activity over the last 30 days.
 - Highest ticket volume: YieldMax Software (18,825 tickets) and LionGate Holdings (15,432 tickets) on the joined activity view.
-- Customer Sentiment Distribution: Neutral 42,249 (66.6%), Negative 13,939 (22.0%), Positive 6,110 (9.6%), Unknown 1,122 (1.8%). The majority of customer interactions are neutral, but negative sentiment (22%) significantly outweighs positive sentiment (9.6%) — a potential area of concern.
+- Customer Sentiment Distribution: Neutral 42,249 (66.6%), Negative 13,939 (22.0%), Positive 6,110 (9.6%), Unknown 1,122 (1.8%). The majority of customer interactions are neutral, but negative sentiment (22%) significantly outweighs positive sentiment (9.6%) - a potential area of concern.

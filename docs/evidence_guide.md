@@ -1,4 +1,4 @@
-# Evidence Trail — how to read `deliverables/screenshots/`
+# Evidence Trail - how to read `deliverables/screenshots/`
 
 The screenshots are a chronological build log. You don't need all of them; this is the
 guided tour.
@@ -31,9 +31,9 @@ guided tour.
 
 ## Where the "how do I know it's correct" lives
 
-1. `deliverables/verification_log.md` — 7 checks, template format, every benchmark
+1. `deliverables/verification_log.md` - 7 checks, template format, every benchmark
    row-count agnostic.
-2. `deliverables/ground_truth/` — the pandas script that recomputes all of it from the raw
+2. `deliverables/ground_truth/` - the pandas script that recomputes all of it from the raw
    CSVs, independent of QuickSight.
-3. `deliverables/q_exploration_log.md` — every Q answer cross-checked against a dashboard
+3. `deliverables/q_exploration_log.md` - every Q answer cross-checked against a dashboard
    sheet, including one case where Q was wrong (fan-out) and how it was caught.
