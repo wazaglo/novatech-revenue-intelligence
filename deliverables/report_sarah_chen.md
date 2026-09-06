@@ -7,13 +7,15 @@
 
 ## 1. Purpose
 
-You asked for "the numbers, not just the data": a single revenue-intelligence view that connects **marketing spend → sales pipeline → customer health** so leadership can see where money is made and lost. Three published dashboards deliver this:
+You asked for "the numbers, not just the data": a single revenue-intelligence view that connects **marketing spend → sales pipeline → customer health** so leadership can see where money is made and lost. One published dashboard with three sheets delivers this:
 
-| Dashboard | Sheet/Purpose | Source | URL (in lab) |
-|---|---|---|---|
-| NovaTech Sales Pipeline Dashboard | Pipeline & win/loss KPIs | CRM deals (499 rows) | dashboards/054c808a-…-78dc3ffe86b4 |
-| NovaTech Marketing Funnel Dashboard | Campaign spend vs. return | Marketing campaigns (2,240 rows) | dashboards/48b9920d-…-73faf07ae61b |
-| NovaTech Customer Health Dashboard | Post-sale risk, built on the unified join | Unified dataset (63,420 rows) | dashboards/5e0b028a-…-6922649889de |
+**WA - NovaTech Revenue Intelligence Dashboard** (dashboards/53e87aec-…-e1b3d6eaba55)
+
+| Sheet | Purpose | Source |
+|---|---|---|
+| Sales Pipeline | Pipeline & win/loss KPIs | WA - NovaTech CRM Deals (499 rows) |
+| Marketing Funnel | Campaign spend vs. return | WA - NovaTech Marketing Campaigns (2,240 rows) |
+| Customer Health | Post-sale risk, built on the unified join | WA - NovaTech Unified Revenue Dataset |
 
 A unified dataset joins all three CSVs on `account_id` (left join CRM⟕Marketing, then ⟕Support), preserving every deal even when an account has no leads or tickets. Exported PDFs of all three sheets are in `pdf/` (`dashboard_export.pdf` merges them).
 
@@ -38,9 +40,10 @@ A unified dataset joins all three CSVs on `account_id` (left join CRM⟕Marketin
 
 ## 5. Q&A governance
 
-A QuickSight/Quick Q&A Topic **"NovaTech Revenue Intelligence"** (Version 1 Active) fronts all four datasets with a business glossary (revenue = Won deal_value; ROI, response-rate and at-risk definitions; known data-quality notes). Before/after comparisons (`screenshots/qc_before*` vs `qc_after*`) show the Topic making answers dataset-aware and fan-out-aware. Ask Q for exploration; quote the dashboard for governed numbers. Full exploration log: `q_exploration_log.md`.
+A QuickSight/Quick Q&A Topic **"WA - NovaTech Revenue Intelligence"** (Version 2 Active) fronts all four datasets with a business glossary (revenue = Won deal_value; ROI, response-rate and at-risk definitions; known data-quality notes). Before/after comparisons (`screenshots/qc_before*` vs `qc_after*`) show the Topic making answers dataset-aware and fan-out-aware. Ask Q for exploration; quote the dashboard for governed numbers. Full exploration log: `q_exploration_log.md`. An auto-generated executive summary of the published dashboard is captured in `exec_summary.md`.
 
-## 6. Using the dashboards
+## 6. Using the dashboard
 
-- **Filter controls** sit at the top of the Sales (deal_stage) and Marketing (campaign_channel) sheets; on Customer Health, priority filter is top-of-sheet. Selections re-filter every visual on the sheet — one-click exploration.
+- **Filter controls** sit at the top of the Customer Health sheet (priority) and the Sales Pipeline sheet (deal_stage); selections re-filter every visual on the sheet — one-click exploration.
+- Cross-sheet navigation: a Navigation action on the Customer Health sheet jumps to the Marketing Funnel sheet (menu/selection on the priority chart), so analysts can move risk → spend in one click.
 - Cross-check any Q answer against the matching sheet before it enters a deck (see Q log cross-check column).
