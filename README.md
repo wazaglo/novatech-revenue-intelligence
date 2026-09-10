@@ -1,6 +1,8 @@
 # NovaTech Revenue Intelligence - Amazon QuickSight BI Build
 
-A complete business-intelligence project in Amazon QuickSight (Amazon Quick Suite): from raw starter CSVs to a governed, three-sheet executive dashboard with Q&A - where **every number in the dashboard was independently recomputed from the raw files before publication**.
+I built this in Amazon QuickSight (Quick Suite) for my Udacity capstone: raw starter
+CSVs to a three-sheet dashboard with Q&A. I recomputed every dashboard number
+from the raw files in pandas before I published anything.
 
 *Udacity nd2726 capstone · Vocareum lab, us-west-2 · September 2026 · Wisdom Azaglo*
 
@@ -15,38 +17,41 @@ A complete business-intelligence project in Amazon QuickSight (Amazon Quick Suit
 | Data-quality findings | dup keys, 59 null sentiment rows, 15 orphan accounts | documented, not silently fixed |
 | Churn-risk signal | ACCT-041: 334 tickets / $40,722 income | flagged for CS team |
 
-The central design problem here is **grain**: account-level left joins fan out rows, so the model stores them for Q&A breadth while every dashboard KPI binds to its source dataset - a lesson learned the hard way when Quick Chat averaged correctly but summed inflated (Q log #2).
+The hard part was **grain**. Account-level left joins blow up row counts, so I kept
+the joined model for Q&A but pointed every dashboard KPI at its source dataset.
+I learned that the hard way when Quick Chat got the average right and the sum
+wrong (Q log #2).
 
 ## Start here
 
-1. [`deliverables/report_sarah_chen.md`](deliverables/report_sarah_chen.md) - the stakeholder report the project was actually for
-2. [`deliverables/verification_log.md`](deliverables/verification_log.md) - how every figure was proven (data dictionary ↔ Quick Chat ↔ pandas/dashboard)
-3. [`deliverables/exec_summary.md`](deliverables/exec_summary.md) - the dashboard's generative executive summary
-4. [`pdf/dashboard_export.pdf`](deliverables/pdf/dashboard_export.pdf) - all three sheets exported
+1. [`deliverables/report_sarah_chen.md`](deliverables/report_sarah_chen.md) - the stakeholder report this was actually for
+2. [`deliverables/verification_log.md`](deliverables/verification_log.md) - how I checked every figure (data dictionary vs Quick Chat vs pandas/dashboard)
+3. [`deliverables/exec_summary.md`](deliverables/exec_summary.md) - raw Q summary plus my notes on what not to quote from it
+4. [`deliverables/pdf/dashboard_export.pdf`](deliverables/pdf/dashboard_export.pdf) - all three sheets exported
 5. [`docs/`](docs) - methodology, screenshot evidence guide, first-person retrospective
 6. [`WALKTHROUGH.md`](WALKTHROUGH.md) - step-by-step reproduction: every input and its provenance, build order, failure log
 
 ## What was built
 
-- **Datasets (SPICE, `WA -` prefixed)** - CRM (499), marketing (2,240), support (3,000) + **unified account-level model** (left joins CRM ⟕ Marketing ⟕ Support on `account_id`) with calculated fields `days_to_close`, `campaign_roi_pct`, `resolution_days`, `at_risk_flag`
+- **Datasets (SPICE, `WA -` prefixed)** - CRM (499), marketing (2,240), support (3,000) + **unified account-level model** (left joins CRM to Marketing to Support on `account_id`) with `days_to_close`, `campaign_roi_pct`, `resolution_days`, `at_risk_flag`
 - **One published dashboard - `WA - NovaTech Revenue Intelligence Dashboard`** (`53e87aec-721e-491e-8436-e1b3d6eaba55`)
-  - *Sales Pipeline* - KPI $707,201, revenue by region/loss reason/tier, `deal_stage` filter control, quantified annotation
-  - *Marketing Funnel* - spend-vs-revenue per campaign, responses by channel, funnel stages, `campaign_channel` control
-  - *Customer Health* - resolution time by priority, sentiment donut, volume by company, priority control, grain disclosure
-  - Cross-sheet navigation, 3 quantified annotations, generative executive summary, Q&A enabled
-- **Governed Q&A topic** - `WA - NovaTech Revenue Intelligence` (V2 Active) over all four datasets with business glossary; before/after evidence and five-question exploration in [`deliverables/q_exploration_log.md`](deliverables/q_exploration_log.md)
-- **Ground-truth toolkit** - [`deliverables/ground_truth/profile_data.py`](deliverables/ground_truth/profile_data.py) reproduces every headline number from the raw CSVs
+  - *Sales Pipeline* - $707,201 KPI, revenue by region/loss reason/tier, `deal_stage` filter, one written annotation
+  - *Marketing Funnel* - spend vs revenue per campaign, responses by channel, funnel stages, `campaign_channel` filter
+  - *Customer Health* - resolution time by priority, sentiment donut, volume by company, priority filter, grain note in the sheet
+  - Cross-sheet navigation, 3 written annotations, Q summary, Q&A on
+- **Q&A topic** - `WA - NovaTech Revenue Intelligence` (V2 Active) over all four datasets with a short glossary; before/after shots and five test questions in [`deliverables/q_exploration_log.md`](deliverables/q_exploration_log.md)
+- **Ground-truth script** - [`deliverables/ground_truth/profile_data.py`](deliverables/ground_truth/profile_data.py) redoes every headline number from the raw CSVs
 
 ## Evidence trail
 
-288 dated screenshots in [`deliverables/screenshots/`](deliverables/screenshots) record the build in order: baseline verification (`00–54`) → upload & type fixes (`55–99`) → unified model & fan-out proof (`100–199`) → dashboard sheets & filters (`200–449`) → Q&A topic & chat (`qc_*`, `490`) → cleanup & final state (`5xx`). [`docs/evidence_guide.md`](docs/evidence_guide.md) walks the important frames; the rest is kept for auditability.
+288 screenshots in [`deliverables/screenshots/`](deliverables/screenshots) in build order: baseline checks (00-54), upload and type fixes (55-99), joined model and fan-out proof (100-199), sheets and filters (200-449), Q&A topic and chat (qc_*, 490), cleanup and final state (5xx). [`docs/evidence_guide.md`](docs/evidence_guide.md) points at the ones that matter; the rest is there so I can prove what I did.
 
 ## Repo map
 
 ```
 deliverables/
   report_sarah_chen.md      stakeholder report        verification_log.md   three-way verification
-  q_exploration_log.md      Q&A testing evidence      exec_summary.md       generated dashboard summary
+  q_exploration_log.md      Q&A testing notes         exec_summary.md       Q summary + my notes
   pdf/                      merged 3-sheet export     ground_truth/         pandas replication kit
   screenshots/              288 evidence frames       README.md             rubric ↔ artifact map
 docs/
@@ -60,7 +65,10 @@ The submission zip delivered to Udacity is byte-equivalent to `deliverables/` (k
 
 ## Honest limitations
 
-Single-quarter data (no trend lines possible); the unified model is deliberately denormalized for Q&A breadth at the cost of storage; `Other` category hygiene (e.g., company-tier labels) was surfaced to stakeholders rather than silently corrected. See [`docs/retrospective.md`](docs/retrospective.md).
+One quarter of data so no trends. The joined model is intentionally wide - it costs
+storage and it inflates sums, which is why Sales/Marketing KPIs don't use it.
+I left messy `Other` tier labels alone and flagged them instead of quietly fixing
+them. More in [`docs/retrospective.md`](docs/retrospective.md).
 
 ## Contributing & license
 

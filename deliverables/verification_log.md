@@ -28,15 +28,15 @@ Pick one fact from above and confirm it independently in the QuickSight dataset 
 - **QuickSight shows:** The published SPICE dataset `novatech_support_tickets.csv` reports **3,000 dataset rows** on its Refresh tab (screenshot `118_refresh_novatech_support_tic.png`); CRM source reports 499 rows (`120_crm_source_rows.png`), marketing 2,240 (`118_refresh_novatech_marketing_c.png`), and the unified joined dataset 63,420 (`117_unified_refresh.png`) - matching the predicted join fan-out exactly. The Sales Pipeline dashboard KPI (Sum of deal_value on the CRM dataset) independently reproduces **$707,201** - the same figure Q returned and the data dictionary documents (`226_sales_dash_published.png`).
 - **Consistent?** Yes - Quick Chat, the data dictionary, and the dataset preview all agree. Independent pandas check on the source CSV confirms the same counts.
 
-## Additional data-quality findings (beyond the data dictionary)
+## Extra data quirks (beyond the dictionary)
 
-- **Duplicate primary keys:** 3 duplicated `opportunity_id` values in CRM (e.g., OPP-44760 appears on two different accounts) and 4 duplicated `ticket_id` values in Support. The dictionary calls these "unique identifiers," so these rows are planted quality issues to watch for during joins.
-- **Undocumented nulls:** `customer_sentiment` has 59 missing values in Support, but the dictionary lists "Nulls: None" for that field.
-- **Orphan join keys (expected):** 150 marketing rows and 204 support rows reference ACCT-101–ACCT-115, which do not exist in CRM - confirmed by pandas; these drop out under inner joins and must be handled with outer/left joins as appropriate.
+- **Duplicate keys:** 3 duped `opportunity_id` values in CRM (e.g., OPP-44760 appears on two different accounts) and 4 duped `ticket_id` values in Support. The dictionary calls these "unique identifiers," so I treated them as planted and deduped on read.
+- **Nulls it doesn't mention:** `customer_sentiment` has 59 blanks in Support, but the dictionary lists "Nulls: None" for that field.
+- **Orphans:** 150 marketing rows and 204 support rows reference ACCT-101-ACCT-115, which do not exist in CRM - I checked this in pandas too. They drop out under inner joins so I used left joins.
 
-## Independent verification (pandas on the source CSVs)
+## Independent check (pandas on the source CSVs)
 
-All chat answers above were additionally re-computed offline with pandas (script `ground_truth/profile_data.py`, full output in `ground_truth/ground_truth.txt`): 499 CRM rows / 315 Won / $707,201 / 85 accounts; 2,240 leads / 609 responses (27.19%); 3,000 tickets / 59 unresolved / priority 1500-1050-400-50. Every Quick Chat answer above agrees with both the data dictionary and the pandas recomputation.
+I redid every chat answer in pandas too (script `ground_truth/profile_data.py`, full output in `ground_truth/ground_truth.txt`): 499 CRM rows / 315 Won / $707,201 / 85 accounts; 2,240 leads / 609 responses (27.19%); 3,000 tickets / 59 unresolved / priority 1500-1050-400-50. Everything Q said lines up with both the dictionary and pandas.
 
 ## Dashboard ↔ chat consistency (post-build)
 

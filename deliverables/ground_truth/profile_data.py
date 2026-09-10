@@ -2,8 +2,8 @@ import os
 import pandas as pd
 from pathlib import Path
 
-# Point this at a folder containing the 3 starter CSVs (course materials,
-# not redistributed here):  NOVA_DATA_DIR=/path/to/Structured Data python profile_data.py
+# Point this at a folder with the 3 starter CSVs (course materials,
+# not in this repo). Example: NOVA_DATA_DIR=/path/to/Structured Data python profile_data.py
 base = Path(os.environ.get("NOVA_DATA_DIR", "Structured Data"))
 crm = pd.read_csv(base / "novatech_crm_deals.csv")
 mkt = pd.read_csv(base / "novatech_marketing_campaigns.csv")
@@ -106,5 +106,6 @@ fan['s'] = fan.s.fillna(1)
 p("est. 2-way join fanout rows (deals x mkt):", int((crm.merge(mkt, on='account_id', how='left').shape[0])))
 p("est unified full join rows:", int((fan.m*fan.s).sum()))
 
-Path("/home/wazaglo/udacity/work").mkdir(exist_ok=True)
-Path("/home/wazaglo/udacity/work/ground_truth.txt").write_text("\n".join(out))
+# Writes next to this script so the output stays with the repo.
+Path(__file__).parent.mkdir(parents=True, exist_ok=True)
+Path(__file__).parent.joinpath("ground_truth.txt").write_text("\n".join(out))
